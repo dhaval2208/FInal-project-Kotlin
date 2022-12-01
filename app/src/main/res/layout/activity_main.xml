@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/contacts">
+    // use background for background image
+// use vertical linearlayout for layout
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+// Use Edittext for name And Id is Name
+        <EditText
+            android:id="@+id/Name"
+            android:layout_width="300dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:ems="10"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:inputType="textPersonName"
+            android:text="Name" />
+// use EditText for Number and id is number
+        <EditText
+            android:id="@+id/Number"
+            android:layout_width="300dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/white"
+            android:ems="10"
+            android:textStyle="bold"
+            android:inputType="number" />
+use Button for Add contacts and id is add-contacts
+        <Button
+            android:id="@+id/add-contacts"
+            android:layout_width="186dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="Add Contact"
+            android:background="#787878"
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
