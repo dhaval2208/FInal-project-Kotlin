@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:padding="10dp"
     android:background="@drawable/contacts">
-
+// ImageView For Profile picture
     <ImageView
         android:id="@+id/profile"
         android:layout_width="120dp"
@@ -15,6 +15,7 @@
         android:background="#c0c0c0"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_baseline_person_24"/>
+  //Edittext For First Name
     <EditText
         android:id="@+id/FirstName"
         android:background="#fff"
@@ -27,6 +28,7 @@
         android:inputType="textPersonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    //Edittext For Last Name
     <EditText
         android:id="@+id/LastName"
         android:background="#fff"
@@ -39,7 +41,7 @@
         android:inputType="textPersonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    //Edittext For Mobile number
     <EditText
         android:id="@+id/PhoneMobile"
         android:layout_width="match_parent"
@@ -52,7 +54,7 @@
         android:padding="10dp"
         android:textColor="#000"
         android:textColorHint="#c5c5c5" />
-
+    //Edittext For Home number
     <EditText
         android:id="@+id/PhoneHome"
         android:background="#fff"
@@ -65,7 +67,7 @@
         android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    //Edittext For Email
     <EditText
         android:id="@+id/Email"
         android:background="#fff"
@@ -77,7 +79,7 @@
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    //Edittext For Address
     <EditText
         android:id="@+id/Address"
         android:background="#fff"
@@ -90,14 +92,18 @@
         android:inputType="textPostalAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    //Button for Save Contacts
 
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/SaveNumber"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentBottom="true"
-    android:src="@drawable/ic_baseline_done_24"/>.
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/SaveNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_baseline_done_24" />.
 
 </RelativeLayout>
