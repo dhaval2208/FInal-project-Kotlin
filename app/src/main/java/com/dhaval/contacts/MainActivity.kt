@@ -62,7 +62,23 @@ class MainActivity : AppCompatActivity() {
     }
 private fun saveContact(){
     Log.d(TAG, "saveContact")
+
+    val firstname = binding.FirstName.text.trim()
+    val lastname = binding.LastName.text.trim()
+    val phonemobile = binding.PhoneMobile.text.trim()
+    val phonehome = binding.PhoneHome.text.trim()
+    val email = binding.Email.text.trim()
+    val address = binding.Address.text.trim()
+
+    Log.d(TAG, "SaveContact: FirstName $firstname")
+    Log.d(TAG, "SaveContact: Last Name $lastname")
+    Log.d(TAG, "SaveContact: Phone Mobile $phonemobile")
+    Log.d(TAG, "SaveContact: Phone Home $phonehome")
+    Log.d(TAG, "SaveContact: Email $email")
+    Log.d(TAG, "SaveContact: Address $address")
+
 }
+
     private fun isWriteContactPermissionEnable(): Boolean{
         return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS)== PackageManager.PERMISSION_DENIED
     }
