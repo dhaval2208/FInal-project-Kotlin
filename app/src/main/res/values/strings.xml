@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Contacts</string>
-    <string name="add">add</string>
+    <string name="app_name" translatable="false">Contacts</string>
+    <string name="add" translatable="false">Add</string>
 </resources>

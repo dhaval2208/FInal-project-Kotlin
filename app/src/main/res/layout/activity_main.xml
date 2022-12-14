@@ -1,55 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:padding="10dp"
     android:background="@drawable/contacts">
-    // use background for background image
-// use vertical linearlayout for layout
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-// Use Edittext for name And Id is Name
-        <EditText
-            android:id="@+id/Name"
-            android:layout_width="300dp"
-            android:layout_height="74dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="90dp"
-            android:ems="10"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:inputType="textPersonName"
-            android:text="Name" />
-// use EditText for Number and id is number
-        <EditText
-            android:id="@+id/Number"
-            android:layout_width="300dp"
-            android:layout_height="74dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:textColor="@color/white"
-            android:ems="10"
-            android:textStyle="bold"
-            android:inputType="number" />
-use Button for Add contacts and id is add-contacts
-        <Button
-            android:id="@+id/add-contacts"
-            android:layout_width="186dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="Add Contact"
-            android:background="#787878"
-            android:textColor="@color/white"
-            android:textSize="16dp"/>
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="#c0c0c0"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_baseline_person_24"/>
+    <EditText
+        android:id="@+id/FirstName"
+        android:background="#fff"
+        android:padding="10dp"
+        android:layout_below="@id/profile"
+        android:layout_marginTop="5dp"
+        android:textColorHint="#c5c5c5"
+        android:hint="First Name"
+        android:textColor="#000"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/LastName"
+        android:background="#fff"
+        android:padding="10dp"
+        android:layout_below="@id/FirstName"
+        android:layout_marginTop="5dp"
+        android:textColorHint="#c5c5c5"
+        android:hint="Last Name"
+        android:textColor="#000"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/PhoneMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LastName"
+        android:layout_marginTop="4dp"
+        android:background="#fff"
+        android:hint="Phone Mobile"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:textColorHint="#c5c5c5" />
+
+    <EditText
+        android:id="@+id/PhoneHome"
+        android:background="#fff"
+        android:padding="10dp"
+        android:layout_below="@id/PhoneMobile"
+        android:layout_marginTop="5dp"
+        android:textColorHint="#c5c5c5"
+        android:hint="Phone Home"
+        android:textColor="#000"
+        android:inputType="phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/Email"
+        android:background="#fff"
+        android:padding="10dp"
+        android:layout_below="@id/PhoneMobile"
+        android:layout_marginTop="5dp"
+        android:textColorHint="#c5c5c5"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/Address"
+        android:background="#fff"
+        android:padding="10dp"
+        android:layout_below="@id/Email"
+        android:layout_marginTop="5dp"
+        android:textColorHint="#c5c5c5"
+        android:hint="Address"
+        android:textColor="#000"
+        android:inputType="textPostalAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/SaveNumber"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentBottom="true"
+    android:src="@drawable/ic_baseline_done_24"/>.
+
+</RelativeLayout>

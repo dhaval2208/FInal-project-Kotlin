@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LanguageInjectionConfiguration">
+    <injection language="AndroidDataBinding" injector-id="xml">
+      <display-name>Button/@id</display-name>
+      <place>xmlAttribute().withLocalName(string().equalTo(&quot;id&quot;)).withNamespace(string().equalTo(&quot;http://schemas.android.com/apk/res/android&quot;)).withParent(xmlTag().withLocalName(string().equalTo(&quot;Button&quot;)))</place>
+    </injection>
+  </component>
+</project>
