@@ -70,6 +70,7 @@ private fun saveContact(){
     val phonehome = binding.PhoneHome.text.trim()
     val email = binding.Email.text.trim()
     val address = binding.Address.text.trim()
+    val work = binding.Work.text.trim()
 // input data
     Log.d(TAG, "SaveContact: FirstName $firstname")
     Log.d(TAG, "SaveContact: Last Name $lastname")
@@ -77,6 +78,8 @@ private fun saveContact(){
     Log.d(TAG, "SaveContact: Phone Home $phonehome")
     Log.d(TAG, "SaveContact: Email $email")
     Log.d(TAG, "SaveContact: Address $address")
+    Log.d(TAG, "SaveContact: Work $work")
+    
 // init array of object ContentProviderOperation
     val Contacts = ArrayList<ContentProviderOperation>()
 // add to contact id
@@ -94,6 +97,24 @@ private fun saveContact(){
         .withValue(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME, firstname)
         .withValue(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME, lastname)
         .build())
+
+    // add to Phone mobile number
+    Contacts.add(ContentProviderOperation.newInsert(
+        ContactsContract.Data.CONTENT_URI)
+        .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, firstname)
+        .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+        .build())
+//  add to phone Home Number
+    Contacts.add(ContentProviderOperation.newInsert(
+        ContactsContract.Data.CONTENT_URI)
+        .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, phonehome)
+        .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_HOME)
+        .build())
+
 
 
 }
