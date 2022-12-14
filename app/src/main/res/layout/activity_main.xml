@@ -93,18 +93,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-  <EditText
-      android:id="@+id/Work"
-      android:background="#fff"
-      android:padding="10dp"
-      android:layout_below="@id/Address"
-      android:layout_marginTop="5dp"
-      android:textColorHint="#c5c5c5"
-      android:hint="Work"
-      android:textColor="#000"
-      android:inputType="textPostalAddress"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
     //Button for Save Contacts
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

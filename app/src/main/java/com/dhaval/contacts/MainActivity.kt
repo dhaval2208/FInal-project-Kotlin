@@ -11,6 +11,7 @@ import android.Manifest
 import android.content.ContentProviderOperation
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Address
 import android.net.Uri
 import android.nfc.Tag
 import android.os.Bundle
@@ -70,7 +71,6 @@ private fun saveContact(){
     val phonehome = binding.PhoneHome.text.trim()
     val email = binding.Email.text.trim()
     val address = binding.Address.text.trim()
-    val work = binding.Work.text.trim()
 // input data
     Log.d(TAG, "SaveContact: FirstName $firstname")
     Log.d(TAG, "SaveContact: Last Name $lastname")
@@ -78,8 +78,7 @@ private fun saveContact(){
     Log.d(TAG, "SaveContact: Phone Home $phonehome")
     Log.d(TAG, "SaveContact: Email $email")
     Log.d(TAG, "SaveContact: Address $address")
-    Log.d(TAG, "SaveContact: Work $work")
-    
+
 // init array of object ContentProviderOperation
     val Contacts = ArrayList<ContentProviderOperation>()
 // add to contact id
@@ -102,7 +101,7 @@ private fun saveContact(){
     Contacts.add(ContentProviderOperation.newInsert(
         ContactsContract.Data.CONTENT_URI)
         .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
-        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
         .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, firstname)
         .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
         .build())
@@ -110,12 +109,27 @@ private fun saveContact(){
     Contacts.add(ContentProviderOperation.newInsert(
         ContactsContract.Data.CONTENT_URI)
         .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
-        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
         .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, phonehome)
         .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_HOME)
         .build())
 
-
+// add email
+    Contacts.add(ContentProviderOperation.newInsert(
+        ContactsContract.Data.CONTENT_URI)
+        .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.CommonDataKinds.Email.DATA, email)
+        .withValue(ContactsContract.CommonDataKinds.Email.TYPE, ContactsContract.CommonDataKinds.Email.TYPE_WORK)
+        .build())
+// add Address
+    Contacts.add(ContentProviderOperation.newInsert(
+        ContactsContract.Data.CONTENT_URI)
+        .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.SipAddress.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.CommonDataKinds.SipAddress.DATA, address)
+        .withValue(ContactsContract.CommonDataKinds.SipAddress.TYPE, ContactsContract.CommonDataKinds.SipAddress.TYPE_HOME)
+        .build())
 
 }
 
