@@ -9,11 +9,15 @@ package com.dhaval.contacts
 
 import android.Manifest
 import android.content.ContentProviderOperation
+import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.location.Address
 import android.net.Uri
 import android.nfc.Tag
+import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
@@ -22,10 +26,12 @@ import android.view.View
 import android.view.inputmethod.InputBinding
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.dhaval.contacts.databinding.ActivityMainBinding
+import java.io.ByteArrayOutputStream
 import javax.sql.CommonDataSource
 
 class MainActivity : AppCompatActivity() {
@@ -131,7 +137,45 @@ private fun saveContact(){
         .withValue(ContactsContract.CommonDataKinds.SipAddress.TYPE, ContactsContract.CommonDataKinds.SipAddress.TYPE_HOME)
         .build())
 
+    // get image as bytes as contact image
+
+    val imageBytes = imageUriToBytes()
+if (imageBytes != null) {
+    // contact with image
+    Log.d(TAG, "saveContact: contact with image")
+
+    // add image
+    Contacts.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+        .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.CommonDataKinds.Photo.PHOTO,imageBytes).build())
 }
+    else{
+        // contact without image
+        Log.d(TAG,"saveContact: contact without image")
+    }
+    
+}
+    private fun imageUriToBytes(): ByteArray? {
+        val bitmap: Bitmap
+        val baos: ByteArrayOutputStream?
+
+        return try {
+            if (Build.VERSION.SDK_INT < 28){
+                bitmap = MediaStore.Images.Media.getBitmap(contentResolver, image_uri)
+            }
+            else{
+                val source = ImageDecoder.createSource(contentResolver, image_uri!!)
+                bitmap = ImageDecoder.decodeBitmap(source)
+            }
+            baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50,baos)
+            baos.toByteArray()
+        }catch (e: Exception) {
+            Log.d(TAG, "imageUriToBytes: ${e.message}")
+            null
+        }
+    }
 
     private fun isWriteContactPermissionEnable(): Boolean{
         return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS)== PackageManager.PERMISSION_DENIED
