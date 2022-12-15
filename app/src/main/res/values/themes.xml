@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    // use parent for theme like button color,text color
-    <style name="Theme.Contacts" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.ContactJava" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

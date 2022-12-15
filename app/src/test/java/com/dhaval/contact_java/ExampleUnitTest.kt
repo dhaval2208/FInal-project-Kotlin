@@ -1,4 +1,4 @@
-package com.dhaval.contacts
+package com.dhaval.contact_java
 
 import org.junit.Test
 
