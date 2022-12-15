@@ -3,7 +3,7 @@
 // Course :- JAV-1001 - 91337 - App Development for Android - 202209 - 001
 
 
-@file:Suppress("DEPRECATION")
+
 
 package com.dhaval.contacts
 
@@ -71,12 +71,12 @@ class MainActivity : AppCompatActivity() {
 private fun saveContact(){
     Log.d(TAG, "saveContact")
 // define variables
-    val firstname = binding.FirstName.text.trim()
-    val lastname = binding.LastName.text.trim()
-    val phonemobile = binding.PhoneMobile.text.trim()
-    val phonehome = binding.PhoneHome.text.trim()
-    val email = binding.Email.text.trim()
-    val address = binding.Address.text.trim()
+    val firstname = binding.FirstName.text.toString().trim()
+    val lastname = binding.LastName.text.toString().trim()
+    val phonemobile = binding.PhoneMobile.text.toString().trim()
+    val phonehome = binding.PhoneHome.text.toString().trim()
+    val email = binding.Email.text.toString().trim()
+    val address = binding.Address.text.toString().trim()
 // input data
     Log.d(TAG, "SaveContact: FirstName $firstname")
     Log.d(TAG, "SaveContact: Last Name $lastname")
@@ -132,9 +132,9 @@ private fun saveContact(){
     Contacts.add(ContentProviderOperation.newInsert(
         ContactsContract.Data.CONTENT_URI)
         .withValueBackReference(ContactsContract.RawContacts.Data.RAW_CONTACT_ID, rawContactId)
-        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.SipAddress.CONTENT_ITEM_TYPE)
-        .withValue(ContactsContract.CommonDataKinds.SipAddress.DATA, address)
-        .withValue(ContactsContract.CommonDataKinds.SipAddress.TYPE, ContactsContract.CommonDataKinds.SipAddress.TYPE_HOME)
+        .withValue(ContactsContract.RawContacts.Data.MIMETYPE,ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)
+        .withValue(ContactsContract.CommonDataKinds.StructuredPostal.DATA, address)
+        .withValue(ContactsContract.CommonDataKinds.StructuredPostal.TYPE, ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME)
         .build())
 
     // get image as bytes as contact image
@@ -154,7 +154,16 @@ if (imageBytes != null) {
         // contact without image
         Log.d(TAG,"saveContact: contact without image")
     }
-    
+// save contact
+    try {
+        contentResolver.applyBatch(ContactsContract.AUTHORITY, Contacts)
+        Log.d(TAG, "saveContact:Saved")
+        Toast.makeText(this, "Saved" , Toast.LENGTH_SHORT).show()
+    }
+    catch (e: Exception) {
+        Log.d(TAG, "saveContact: failed to save due to ${e.message}")
+        Toast.makeText(this, "saveContact: failed to save due to ${e.message}" , Toast.LENGTH_SHORT).show()
+    }
 }
     private fun imageUriToBytes(): ByteArray? {
         val bitmap: Bitmap
@@ -178,7 +187,7 @@ if (imageBytes != null) {
     }
 
     private fun isWriteContactPermissionEnable(): Boolean{
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS)== PackageManager.PERMISSION_DENIED
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS)== PackageManager.PERMISSION_GRANTED
     }
 
     private fun requestWriteContactPermission(){
@@ -207,7 +216,7 @@ if (imageBytes != null) {
                 }
                 else{
                     // permission denied , can't save contact
-                    Toast.makeText(this, "Permission deneid" , Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Permission denied" , Toast.LENGTH_SHORT).show()
                 }
             }
         }
